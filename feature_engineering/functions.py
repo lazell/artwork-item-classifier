@@ -222,14 +222,29 @@ def furniture_keyword(x):
             
     return False
 
+def sculpture_keyword(x):
+    
+    # Manual segregation by picking out key words in the medium
+    
+    sculpture_word_list = ['bronze', 'patina']
+
+    list_words_cleaned = re.sub(r'\W+', ' ', str(x).lower())
+
+    for x in sculpture_word_list:
+            if list_words_cleaned.find(x) != -1:
+                return True
+    return False
+    
+
 
 def decorative_obj_keyword(x):
     
     # Manual segregation by picking out key words in the medium
     
     dec_obj_word_list = ['vase', 'dish', 'tumblers', 'bowl','desk fan'
-                                            , 'table fan', 'flatware', 'dinnerwear','pitcher'
-                                            , 'goblet', 'lamp', 'plate', 'clock', 'wall']
+                         , 'table fan', 'flatware', 'dinnerwear','pitcher'
+                         , 'goblet', 'lamp', 'plate', 'clock', 'wall'
+                          'plate', 'plaque']
 
     list_words_cleaned = re.sub(r'\W+', ' ', str(x).lower())
 
@@ -241,8 +256,6 @@ def decorative_obj_keyword(x):
 
 def long_list_of_things(x):
     if len(re.findall(',', x)) >= 4:
-        return True
-    elif len(x) > 120:
         return True
     else:
         return False
