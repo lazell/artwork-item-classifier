@@ -29,6 +29,8 @@ def text_based_transformer(df, medium='Medium', dimensions='Dimensions', title='
                           ,'drawing_keyword' : lambda x: drawing_keyword(str(x))
                           ,'painting_keyword' : lambda x: painting_keyword(str(x))
                           ,'photo_keyword' : lambda x: photo_keyword(str(x))
+                          ,'sculpture_keyword' : lambda x: sculpture_keyword(str(x))
+                          ,'decorative_obj_keyword_med': lambda x: decorative_obj_keyword(str(x))
                               }.items():
 
         df[feature] = df[medium].apply(func)
@@ -150,7 +152,7 @@ def print_keyword(x):
     
     # Manual segregation by picking out key words in the medium
     
-    print_word_list = ['lithograp'
+    print_word_list = ['lithograph'
                          , 'etching'
                          , 'letterpress'
                          , 'screenprint'
@@ -169,7 +171,9 @@ def print_keyword(x):
                          , 'linoleum'
                          , 'linocut'
                          , 'emboss'
-                         , 'monotype']
+                         , 'monotype'
+                         , 'serigraph'
+                      ]
 
     list_words_cleaned = re.sub(r'\W+', ' ', str(x).lower())
 
@@ -212,7 +216,9 @@ def furniture_keyword(x):
     
     # Manual segregation by picking out key words in the medium
     
-    furniture_word_list = ['table', 'chair', 'rocker', 'stool']
+    furniture_word_list = ['table', 'chair', 'rocker', 'stool', 'cabinet'
+                           , 'settee', 'coat rack', 'sofa', 'bar cart', 'chandelier'
+                           , 'nightstand', 'loveseat', 'bench', 'sectional', 'chaise lounge', 'pedestal']
 
     list_words_cleaned = re.sub(r'\W+', ' ', str(x).lower())
 
@@ -226,7 +232,7 @@ def sculpture_keyword(x):
     
     # Manual segregation by picking out key words in the medium
     
-    sculpture_word_list = ['bronze', 'patina']
+    sculpture_word_list = ['bronze', 'patina', 'painted wood', 'wood carving']
 
     list_words_cleaned = re.sub(r'\W+', ' ', str(x).lower())
 
@@ -243,15 +249,14 @@ def decorative_obj_keyword(x):
     
     dec_obj_word_list = ['vase', 'dish', 'tumblers', 'bowl','desk fan'
                          , 'table fan', 'flatware', 'dinnerwear','pitcher'
-                         , 'goblet', 'lamp', 'plate', 'clock', 'wall'
-                          'plate', 'plaque']
+                         , 'goblet', 'lamp', 'plate', 'clock', 'wall',
+                          'plate', 'plaque', 'carpet', 'rug']
 
     list_words_cleaned = re.sub(r'\W+', ' ', str(x).lower())
 
     for x in dec_obj_word_list:
             if list_words_cleaned.find(x) != -1:
                 return True
-            
     return False
 
 def long_list_of_things(x):
