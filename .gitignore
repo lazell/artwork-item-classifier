@@ -1,2 +1,5 @@
 /data/*
 auth.py
+.ipynb_checkpoints
+/WIP/
+/WIP/*
